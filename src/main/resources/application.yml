@@ -1,0 +1,40 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: "jdbc:h2:mem:library;MODE=MYSQL;NON_KEYWORDS=USER"
+    username: "sa"
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+h2:
+  console:
+    enabled: true
+    path: /h2-console
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:   # springboot가 어떤 데이터한 데이터베이스를 가리키도록 할 것인지
+    url: "jdbc:mysql://localhost/library" # jdbc:mysql:// = "jdbc를 이용해 mysql에 접근"
+    username: "root"                      # localhost : 접근하려는 mysql은 localhost에 있음
+    pasword: ""                             # library : 접근하려는 DB는 library이다
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
